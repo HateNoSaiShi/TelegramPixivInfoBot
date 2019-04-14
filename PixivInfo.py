@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: FujiWara No MOkou
+@author: HateNoSaiShi
 """
 
 import telebot
