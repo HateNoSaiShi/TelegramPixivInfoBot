@@ -129,55 +129,11 @@ def MessageIdTest(message_id):
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    print(1)
-    text = """中文说明：
-1./id illustID
-|返回illustID对应的pixiv插画
-2./touhou
-|随机从东方同人插画频道forward一张插画
-3./ranking type number
-|返回number张type对应的榜单的插画。
-|将type替换为(day，week，month，day_male，day_female),分别对应（日榜，周榜，月榜，男性向日榜，女性向日榜）。
-|number小于等于5每张图独立推送，number大于5以album形式推送，最大值为10。
-|number的缺省值为6。
-4./related illustID number
-|返回illustID对应图片的相关图片。
-|number小于等于5每张图独立推送，number大于5以album形式推送，最大值为10。
-|number的缺省值为5（注意，和/ranking不同）。
-5./file illustID
-|以文件形式返回对应的pixiv插画
-☆源代码：请私聊获取
-☆本bot不记录使用者任何群聊信息。
-
-
-Instructions for use:
-1./id illustID
-| Return ONE picture with input illust_id
-2./touhou
-| Forward one illustration randomly from Touhou Doujin Pics Recommendation channel.
-3./ranking type number
-| Return multiple pictures form ranking
-| Replace type with keyword (day, week, month, day_male or day_female) to fetch pictures from (daily, weekly, monthly, daily for male members or daily for female members) ranking.
-| Each picture is displayed seperately for number no larger than FIVE while a single album is showed for number greater than FIVE.
-| The default value for number is SIX while maximum value is TEN.
-4./related illustID number
-| Return related pictures of illustID not including itself.
-| Each picture is displayed seperately for number no larger than FIVE while a single album is showed for number greater than FIVE.
-| The default value for number is FIVE(WARNING:different from /ranking) while maximum value is TEN.
-5./file illustID
-| Return the piciture as a file.
-☆Source Code：Please contact the owner
-☆This bot never records any group chat history information.
-
+    text = """
 推广： https://t.me/DailyTouhouDoujinPic
 promotion : https://t.me/DailyTouhouDoujinPic
     """
     bot.reply_to(message, text)
-    print(2)
-    '''bot.reply_to(message, """使用方法：
-    /id p站图片id 
-    /ranking 频率(day,week,month) 数量(缺省为6，5以上不给出图片id)
-    /related 图片id 数量(缺省为5) """)'''
 
 #=============================== 
     
@@ -406,6 +362,8 @@ def send_file(message):
 #=============================
 @bot.message_handler(commands=['touhou'])
 def forward_from_my_channel(message):
+    
+    #change -1001164118362 to your channel id
     
     MAX_ID = 2453
     
