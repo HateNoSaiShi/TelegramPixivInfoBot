@@ -2,6 +2,8 @@
 ```
 Return Pixiv Illustration to Telegram Group
 
+Now support ugoira. 
+
 Requests
 --------
 TelegramBotApi : https://pypi.org/project/TelegramBotAPI/
