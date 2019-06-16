@@ -63,8 +63,12 @@ def PixivDownloadUgoiraZip(pixiv_id, api):
         for file in temp_file_list:
             img_data.append(imageio.imread(file))
         gif_path = local_extracted_path + 'main.gif'
+        
+        delay_list = api.ugoira_metadata(pixiv_id, req_auth = True)['ugoira_metadata']['frames']
+        delay_list = [item['delay'] for item in delay_list]
+        delay = sum(delay_list) / len(delay_list)
 
-        imageio.mimsave(gif_path, img_data, "GIF", duration=len(name_list) / 1000)
+        imageio.mimsave(gif_path, img_data, "GIF", duration=delay / 1000)
         
 
         
@@ -263,7 +267,7 @@ promotion : https://t.me/DailyTouhouDoujinPic
 
 @bot.message_handler(commands = ['ugoira'])
 def sen_gif(message):
-    bool_ban = SendTrackMessage(message, 'id')
+    bool_ban = SendTrackMessage(message, 'ugoira')
     if bool_ban:
         bot.reply_to(message, '你/频道/群组 被BAN了, 请私聊bot确认是否为个人被ban')
         return 0
@@ -451,7 +455,7 @@ def send_picture_to_channel(message):
 def send_ugoira_to_channel(message):
     if int(message.chat.id) not in white_list:
         try:
-            temp_text = message.chat.title + '使用id命令' + '    ' + str(message.chat.id) + '    ' + message.chat.username
+            temp_text = message.chat.title + '使用ugoira命令' + '    ' + str(message.chat.id) + '    ' + message.chat.username
         except:
             temp_text = 'A Null is captured'
         bot.send_message('your chat_id', temp_text)
